@@ -6,7 +6,8 @@ dotenv.config();
 const { URL } = process.env;
 
 const getPageInfoAndHits = async (url, number) => {
-  const { page, nbPages, body } = await request(`${url}&page=${number}`);
+  const response = await request(`${url}&page=${number}`);
+  const { page, nbPages, body } = response;
   const news = JSON.parse(body).hits;
   return { page, nbPages, news };
 };
@@ -35,7 +36,7 @@ const buildNewData = (allNews, actualNew) => {
 };
 
 const populateNewPage = async number => {
-  const { page, nbPages, news } = getPageInfoAndHits(URL, number);
+  const { page, nbPages, news } = await getPageInfoAndHits(URL, number);
   const documentNews = news.reduce(buildNewData, []);
   await NewSchema.bulkWrite(documentNews);
   return [page, nbPages];

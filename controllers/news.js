@@ -4,9 +4,11 @@ const NewSchema = require("../models/new");
 
 const getList = async (req, res) => {
   const { page } = req.params;
-  const news = await NewSchema.find({})
-    .skip(page)
-    .limit(10);
+  const numberPerPage = 10;
+  const news = await NewSchema.find({ isActive: { $ne: false } })
+    .sort({ createdAt: -1 })
+    .skip(page * numberPerPage)
+    .limit(numberPerPage);
 
   res
     .status(OK)
@@ -15,9 +17,9 @@ const getList = async (req, res) => {
 };
 
 const remove = async (req, res) => {
-  const { id } = req.params;
+  const { _id } = req.params;
   const isActive = false;
-  await NewSchema.findOneAndUpdate({ id }, { isActive }).orFail(() => Error("Not found"));
+  await NewSchema.findOneAndUpdate({ _id }, { isActive }, { new: false }).orFail(() => Error("Not found"));
   res.status(NO_CONTENT).end();
 };
 
