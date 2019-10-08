@@ -21,9 +21,7 @@ const DatabaseConnection = logger => {
 
   process.on("SIGINT", () => {
     mongoose.connection.close(() => {
-      logger.info(
-        `Mongoose default connection is disconnected due to application termination`
-      );
+      logger.info(`Mongoose default connection is disconnected due to application termination`);
       process.exit(0);
     });
   });
