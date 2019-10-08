@@ -8,8 +8,6 @@ COPY . .
 
 COPY .env.docker /usr/src/app/.env
 RUN npm install
-RUN npm populate
+COPY entrypoint.sh /usr/src/app/entrypoint.sh
 
-
-
-CMD ["npm", "run", "start"]
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

@@ -1,11 +1,11 @@
 {
-  "name": "Eirene",
+  "name": "eirene",
   "version": "1.0.0",
   "description": "Api that provides only news that you want from another algolia Api",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "populate": "node --inspect-brk  managements/populate.js",
+    "populate": "node  managements/populate.js",
     "debug": "node --inspect-brk server.js",
     "pretest": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix",
     "test": "NODE_ENV=test mocha --timeout 10000 --exit test/**/*.js"
