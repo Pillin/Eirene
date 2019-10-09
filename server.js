@@ -26,5 +26,5 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api/", routes);
 app.listen(PORT, () => logger.info(`server started in ${PORT}`));
-startTasks();
+startTasks(logger);
 module.exports = { app };

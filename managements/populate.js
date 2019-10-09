@@ -4,9 +4,10 @@ const databaseConfig = require("../config/database");
 const { populateNews } = require("./models/news");
 
 dotenv.config();
-const run = () => {
+const run = async () => {
   databaseConfig(logger);
-  populateNews();
+  await populateNews(logger);
+  process.exit();
 };
 
 run();

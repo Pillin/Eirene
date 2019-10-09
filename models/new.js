@@ -8,6 +8,7 @@ const NewSchema = new Schema({
   title: { type: String, required: false },
   author: { type: String, required: true },
   objectID: { type: String, required: true },
+  storyUrl: { type: String, required: true },
   isActive: { type: Boolean, default: true }
 });
 

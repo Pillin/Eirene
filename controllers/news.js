@@ -3,11 +3,12 @@ const { OK, NO_CONTENT } = require("http-status-codes");
 const NewSchema = require("../models/new");
 
 const getList = async (req, res) => {
-  const { page } = req.params;
+  const { page } = req.query;
   const numberPerPage = 10;
+
   const news = await NewSchema.find({ isActive: { $ne: false } })
     .sort({ createdAt: -1 })
-    .skip(page * numberPerPage)
+    .skip(parseInt(page, 10) * numberPerPage)
     .limit(numberPerPage);
 
   res

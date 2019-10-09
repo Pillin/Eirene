@@ -77,6 +77,12 @@ For the deployment you can execute the docker commands to create the image and c
 >> docker-compose up -d
 ```
 
+### Container populate with data
+
+```
+>> docker exec -it <container_id> npm run populate
+```
+
 ## Usage
 
 For using the api, it is neccesary definning the endpoints
